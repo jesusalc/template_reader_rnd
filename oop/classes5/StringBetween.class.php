@@ -12,12 +12,11 @@ class StringBetween
      *
      * @return string
      */
-    function remove($string, $start, $end){
-        $string = ' ' . $string;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
+    public function remove_between($string, $start, $end){
+        $init = $this->get_ini($string, $start);
+        $len = $this->get_len($string, $end, $ini);
+
         $oni = $ini + strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
         $part_one = substr($string, 0, $ini);
         $part_two = substr($string, ($oni + $len + strlen($end)));
         return $part_one . $part_two;
@@ -25,14 +24,13 @@ class StringBetween
 
 
     /**
-     * $parsed = get_string_between($fullstring, '[tag]', '[/tag]');
+     * Sample use: $parsed = $this->get_between($fullstring, '[tag]', '[/tag]');
      */
-    function get($string, $start, $end){
-        $string = ' ' . $string;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
+    public function get_between($string, $start, $end){
+        $init = $this->get_ini($string, $start);
+        $len = $this->get_len($string, $end, $ini);
+
         $ini += strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
         return substr($string, $ini, $len);
     }
 
@@ -40,15 +38,24 @@ class StringBetween
      *
      * @return string
      */
-    function insert($string, $start, $end, $part_two){
-        $string = ' ' . $string;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
+    public function insert_between($string, $start, $end, $part_two){
+        $init = $this->get_ini($string, $start);
+        $len = $this->get_len($string, $end, $ini);
+
         $oni = $ini + strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
         $part_one = substr($string, 0, $ini-1);
         $part_three = substr($string, ($oni + $len + strlen($end)-1));
         return $part_one . $part_two . $part_three;
     }
 
+    private function get_ini($string, $start) {
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        return $ini;
+    }
+
+    private function get_len($string, $end, $ini){
+        return strpos($string, $end, $ini) - $ini;
+    }
 }

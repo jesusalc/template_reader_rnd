@@ -6,7 +6,7 @@ namespace TemplateReaderTask;
  *
  * @author jesusalc
  */
-class Router
+class FileLoader
 {
     /**
     * Wrapper for file_get_contents

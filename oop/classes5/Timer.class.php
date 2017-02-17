@@ -9,6 +9,7 @@ namespace TemplateReaderTask;
 class Timer
 {
 
+    protected $clocked_time2;
     /**
      *
      * SPEED PING RESEARCH
@@ -20,7 +21,7 @@ class Timer
      *	$_POST ['OriginalRequestTimeFloat'] = $_SERVER ['REQUEST_TIME_FLOAT'];
      *
      */
-    function clockIn() {
+    function clock_in() {
         $mtime = microtime ();
         $mtime = explode ( ' ', $mtime );
         $mtime = $mtime [1] + $mtime [0];
@@ -43,9 +44,18 @@ class Timer
      *	$_SESSION ['speed'] = $serverTookTime2;
      *	$_GLOBALS ['speed'] = $serverTookTime2;
      */
-    function timerDiff($endtime, $starttime) {
+    function timer_diff($endtime, $starttime) {
         $totaltime = round ( ($endtime - $starttime), 5 );
         return $totaltime;
     }
 
+    function print_results($clocked_time2, $clocked_time){
+        $speed = $timer->timer_diff($clocked_time2, $clocked_time);
+        echo " \n\n";
+        echo sprintf ( "Clocked time 1 %0.7f kb/s \n", $clocked_time2 );
+        echo sprintf ( "Clocked time 2 %0.7f kb/s \n", $clocked_time );
+        echo "=================================== \n";
+        echo sprintf ( "Execution speed is %0.7f kb/s \n", $speed );
+        echo " \n\n";
+    }
 }
