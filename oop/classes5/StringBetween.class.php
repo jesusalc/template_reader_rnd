@@ -6,13 +6,13 @@ namespace TemplateReaderTask;
  *
  * @author jesusalc
  */
-class StringManipulation
+class StringBetween
 {
-       /**
-    *
-    * @return string
-    */
-    function remove_string_between($string, $start, $end){
+    /**
+     *
+     * @return string
+     */
+    function remove($string, $start, $end){
         $string = ' ' . $string;
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
@@ -25,9 +25,9 @@ class StringManipulation
 
 
     /**
-    * $parsed = get_string_between($fullstring, '[tag]', '[/tag]');
-    */
-    function get_string_between($string, $start, $end){
+     * $parsed = get_string_between($fullstring, '[tag]', '[/tag]');
+     */
+    function get($string, $start, $end){
         $string = ' ' . $string;
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
@@ -37,10 +37,10 @@ class StringManipulation
     }
 
     /**
-    *
-    * @return string
-    */
-    function insert_string_between($string, $start, $end, $part_two){
+     *
+     * @return string
+     */
+    function insert($string, $start, $end, $part_two){
         $string = ' ' . $string;
         $ini = strpos($string, $start);
         if ($ini == 0) return '';

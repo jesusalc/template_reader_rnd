@@ -6,7 +6,7 @@ namespace TemplateReaderTask;
  *
  * @author jesusalc
  */
-class StringManipulation
+class StringReplacer
 {
 
 
