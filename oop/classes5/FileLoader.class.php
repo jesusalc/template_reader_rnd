@@ -14,7 +14,13 @@ class FileLoader
     * @return string
     */
     function load_template($filename) {
-        return file_get_contents("../templates/" . $filename . ".tmpl");
+        $file_to_load = "../../templates/" . $filename . ".tmpl";
+        if (!file_exists($file_to_load)) {
+            echo "FileNotFound - Error Loading:" . $file_to_load;
+            die();
+        } else {
+            return file_get_contents($file_to_load);
+        }
     }
 
 }

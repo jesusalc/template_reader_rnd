@@ -26,8 +26,8 @@ class Main
         $dataLoader = new DataLoader();
         $keys = $dataLoader->get_keys();
 
-        $stringBetween = new StringBetween();
-        $html = $stringBetween->replace_keys($html, $keys);
+        $stringReplacer = new StringReplacer();
+        $html = $stringReplacer->replace_keys($html, $keys);
 
         $serverHelper = new ServerHelper();
         $serverHelper->serve_template($html);

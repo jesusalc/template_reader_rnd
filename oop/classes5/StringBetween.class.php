@@ -13,7 +13,7 @@ class StringBetween
      * @return string
      */
     public function remove_between($string, $start, $end){
-        $init = $this->get_ini($string, $start);
+        $ini = $this->get_ini($string, $start);
         $len = $this->get_len($string, $end, $ini);
 
         $oni = $ini + strlen($start);
@@ -27,7 +27,7 @@ class StringBetween
      * Sample use: $parsed = $this->get_between($fullstring, '[tag]', '[/tag]');
      */
     public function get_between($string, $start, $end){
-        $init = $this->get_ini($string, $start);
+        $ini = $this->get_ini($string, $start);
         $len = $this->get_len($string, $end, $ini);
 
         $ini += strlen($start);
@@ -39,7 +39,7 @@ class StringBetween
      * @return string
      */
     public function insert_between($string, $start, $end, $part_two){
-        $init = $this->get_ini($string, $start);
+        $ini = $this->get_ini($string, $start);
         $len = $this->get_len($string, $end, $ini);
 
         $oni = $ini + strlen($start);

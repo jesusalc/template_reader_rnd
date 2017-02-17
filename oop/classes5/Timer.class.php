@@ -50,7 +50,7 @@ class Timer
     }
 
     function print_results($clocked_time2, $clocked_time){
-        $speed = $timer->timer_diff($clocked_time2, $clocked_time);
+        $speed = $this->timer_diff($clocked_time2, $clocked_time);
         echo " \n\n";
         echo sprintf ( "Clocked time 1 %0.7f kb/s \n", $clocked_time2 );
         echo sprintf ( "Clocked time 2 %0.7f kb/s \n", $clocked_time );

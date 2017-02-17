@@ -13,7 +13,7 @@ class StringReplacer extends StringBetween
      *
      * @return string
      */
-    function replace($key,  $value, $text) {
+    function replace_string($key,  $value, $text) {
         // $return  = str_replace( "{{$key}}",  $value,  $text);
         return preg_replace($key,  $value, $text);
     }
@@ -30,7 +30,7 @@ class StringReplacer extends StringBetween
         // $return = str_ireplace( $search,  $replace,  $text);
         $return = $text;
         foreach ($replace_array as $key => $value) {
-            $return = $this->replace_between('/\{\{'.$key.'\}\}/i',  $value, $return);
+            $return = $this->replace_string('/\{\{'.$key.'\}\}/i',  $value, $return);
         }
         return $return;
     }
@@ -45,7 +45,7 @@ class StringReplacer extends StringBetween
         foreach ($replace_array as $key => $value) {
             // simple replacement of {{key}}
             if (gettype($value) === "string") {
-                $return = $this->replace_between('/\{\{'.$key.'\}\}/i',  $value, $return);
+                $return = $this->replace_string('/\{\{'.$key.'\}\}/i',  $value, $return);
             }
             // start {{#each Array}} of Arrays key => [Array[],Array[],Array[]]
             if (gettype($value) === "array" && gettype($key) === "string") {
@@ -76,7 +76,7 @@ class StringReplacer extends StringBetween
         foreach ($value as $underkey => $undervalue) {
             $construct .= $build;
             foreach ($undervalue as $kinderkey => $kindervalue) {
-                $construct = $this->replace_between('/\{\{'.$kinderkey.'\}\}/i',  $kindervalue, $construct);
+                $construct = $this->replace_string('/\{\{'.$kinderkey.'\}\}/i',  $kindervalue, $construct);
             }
             $count--;
             if ($condition !== "") {
@@ -111,7 +111,7 @@ class StringReplacer extends StringBetween
                 $if = $this->get_between($block , "{{#unless @last}}", "{{/unless}}");
             }
 
-            $build = $this->remove($block, "{{#unless @last}}", "{{/unless}}");
+            $build = $this->remove_between($block, "{{#unless @last}}", "{{/unless}}");
         }
         return $this->get_morphed_insert($return, $key, $value, $condition, $if, $else, $build);
     }
