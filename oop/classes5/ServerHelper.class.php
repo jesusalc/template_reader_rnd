@@ -37,4 +37,20 @@ class ServerHelper
         echo $html;
     }
 
+
+    /**
+     * @return array
+     */
+    function get_localhost_keys() {
+        $keys = array();
+        $host = $_SERVER['HTTP_HOST'];
+        if ($host == 'localhost'){
+            $keys[""] = "";
+        } else {
+            $keys[""] = "";
+        }
+        return $keys;
+    }
+
+
 }
