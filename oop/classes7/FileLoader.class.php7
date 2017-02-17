@@ -1,0 +1,25 @@
+<?php declare(strict_types=1);
+
+namespace TemplateReaderTask;
+
+/**
+ *
+ * @author jesusalc
+ */
+class FileLoader
+{
+    /**
+     * Wrapper for file_get_contents
+     *
+     */
+    function load_template(string $filename) : string {
+        $file_to_load = "../../templates/" . $filename . ".tmpl";
+        if (!file_exists($file_to_load)) {
+            echo "FileNotFound - Error Loading:" . $file_to_load;
+            die();
+        } else {
+            return file_get_contents($file_to_load);
+        }
+    }
+
+}

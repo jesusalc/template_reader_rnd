@@ -1,0 +1,23 @@
+<?php declare(strict_types=1);
+
+namespace TemplateReaderTask;
+
+/**
+ *
+ * @author jesusalc
+ */
+class Router
+{
+
+    /**
+     *
+     */
+    function get_url_section(int $section) : string {
+        if (isset($_SERVER) && isset($_SERVER['REQUEST_URI'])) {
+            return explode('/', $_SERVER['REQUEST_URI'])[$section];
+        } else {
+            return "";
+        }
+    }
+
+}

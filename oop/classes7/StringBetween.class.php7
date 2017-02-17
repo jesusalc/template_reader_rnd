@@ -1,0 +1,69 @@
+<?php declare(strict_types=1);
+
+namespace TemplateReaderTask;
+
+/**
+ *
+ * @author jesusalc
+ */
+class StringBetween
+{
+    /**
+     *
+     */
+    public function remove_between(string $string, string $start, string $end) : string {
+        $ini = $this->get_ini($string, $start);
+
+        $oni = $ini + strlen($start);
+        $len = $this->get_len($string, $end, $ini);
+        $part_one = substr($string, 0, $ini);
+        $part_two = substr($string, ($oni + $len + strlen($end)));
+        return $part_one . $part_two;
+    }
+
+
+    /**
+     * Sample use: $parsed = $this->get_between($fullstring, '[tag]', '[/tag]');
+     *
+     */
+    public function get_between(string $string, string $start, string $end) : string{
+        $ini = $this->get_ini($string, $start);
+
+        $ini += strlen($start);
+        $len = $this->get_len($string, $end, $ini);
+        return substr($string, $ini, $len);
+    }
+
+
+    /**
+     *
+     */
+    public function insert_between(string $string, string $start, string $end, string $part_two) : string {
+        $ini = $this->get_ini($string, $start);
+
+        $oni = $ini + strlen($start);
+        $len = $this->get_len($string, $end, $ini);
+        $part_one = substr($string, 0, $ini-1);
+        $part_three = substr($string, ($oni + $len + strlen($end)-1));
+        return $part_one . $part_two . $part_three;
+    }
+
+
+    /**
+     *
+     */
+    private function get_ini(string $string, string $start) : string {
+        $string = '.' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        return ($ini-1);
+    }
+
+
+    /**
+     *
+     */
+    private function get_len(string $string, string $end, int $ini) : string{
+        return strpos($string, $end, $ini) - $ini;
+    }
+}

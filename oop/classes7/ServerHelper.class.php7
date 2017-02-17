@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace TemplateReaderTask;
 
@@ -12,9 +12,8 @@ class ServerHelper
     /**
      * Get language short code
      *
-     * @return string
      */
-    function get_language($default){
+    function get_language(string $default) : string {
         $lang = "";
         if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -29,7 +28,7 @@ class ServerHelper
      * echo contents to page with header for html
      *
      */
-    function serve_template($html){
+    function serve_template(string $html) {
         # Serve Page as html
         header("Content-Type:text/html");
         echo $html;
@@ -37,9 +36,9 @@ class ServerHelper
 
 
     /**
-     * @return array
+     *
      */
-    function get_localhost_keys() {
+    function get_localhost_keys() : array {
         $keys = array();
         $host = $_SERVER['HTTP_HOST'];
         if ($host == 'localhost'){

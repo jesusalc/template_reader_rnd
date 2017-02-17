@@ -1,0 +1,10 @@
+<?php  declare(strict_types=1);
+
+namespace TemplateReaderTask;
+
+foreach (glob("*.class.php7") as $filename) {
+    // echo " LOADING:" . ($filename) . "\n";
+    require($filename);
+}
+$filename = null;
+unset($filename);
