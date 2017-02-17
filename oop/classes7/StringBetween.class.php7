@@ -13,6 +13,7 @@ class StringBetween
      */
     public function remove_between(string $string, string $start, string $end) : string {
         $ini = $this->get_ini($string, $start);
+        if ($ini < 0) return '';
 
         $oni = $ini + strlen($start);
         $len = $this->get_len($string, $end, $ini);
@@ -28,6 +29,7 @@ class StringBetween
      */
     public function get_between(string $string, string $start, string $end) : string{
         $ini = $this->get_ini($string, $start);
+        if ($ini < 0) return '';
 
         $ini += strlen($start);
         $len = $this->get_len($string, $end, $ini);
@@ -40,6 +42,7 @@ class StringBetween
      */
     public function insert_between(string $string, string $start, string $end, string $part_two) : string {
         $ini = $this->get_ini($string, $start);
+        if ($ini < 0) return '';
 
         $oni = $ini + strlen($start);
         $len = $this->get_len($string, $end, $ini);
@@ -52,10 +55,8 @@ class StringBetween
     /**
      *
      */
-    private function get_ini(string $string, string $start) : string {
-        $string = '.' . $string;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
+    private function get_ini(string $string, string $start) : int {
+        $ini = strpos('.' . $string, $start);
         return ($ini-1);
     }
 
@@ -63,7 +64,7 @@ class StringBetween
     /**
      *
      */
-    private function get_len(string $string, string $end, int $ini) : string{
+    private function get_len(string $string, string $end, int $ini) : int {
         return strpos($string, $end, $ini) - $ini;
     }
 }
