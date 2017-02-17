@@ -3,3 +3,4 @@
 namespace TemplateReaderTask;
 require "ClassLoader.php7";
 new Main();
+// echo phpinfo();

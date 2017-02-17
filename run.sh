@@ -3,6 +3,7 @@
 CURCWD=$(pwd)
 (
   cd functional/
+  pwd
   echo ' '
   echo -e "\\033[38;5;93m === Terminal Test \\033[38;5;123m Funtional PHP 5 \\033[38;5;93m === \\033[38;0m ";
   echo ' '
@@ -33,9 +34,10 @@ CURCWD=$(pwd)
   echo " "
   echo " "
 )
-##cd $CURCWD;
+cd $CURCWD;
 (
   cd oop/classes5
+  pwd
   echo ' '
   echo -e "\\033[38;5;99m === Terminal Test \\033[38;5;125m OOP PHP 5 \\033[38;5;99m === \\033[38;0m ";
   echo ' '
@@ -53,20 +55,21 @@ CURCWD=$(pwd)
   wait
 
 )
-#cd $CURCWD;
+cd $CURCWD;
 (
   cd oop/classes7
+  pwd
   echo ' '
   echo -e "\\033[38;5;99m === Terminal Test \\033[38;5;125m OOP PHP 7 \\033[38;5;99m === \\033[38;0m ";
   echo ' '
-  php index.php7
+  php index.php
   echo " "
   echo -e "\\033[38;5;99m === Server Test \\033[38;5;125m OOP PHP 7 Serve \\033[38;5;99m === \\033[38;0m ";
   echo " "
   echo "http://localhost:9090/extra"
   echo "http://localhost:9090/template"
   echo " "
-  php -S localhost:9090 -f index.php7
+  php -S localhost:9090 -f index.php
   wait
   echo " "
   echo " "
