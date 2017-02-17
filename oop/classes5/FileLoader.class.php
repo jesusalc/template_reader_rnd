@@ -9,10 +9,10 @@ namespace TemplateReaderTask;
 class FileLoader
 {
     /**
-    * Wrapper for file_get_contents
-    *
-    * @return string
-    */
+     * Wrapper for file_get_contents
+     *
+     * @return string
+     */
     function load_template($filename) {
         $file_to_load = "../../templates/" . $filename . ".tmpl";
         if (!file_exists($file_to_load)) {

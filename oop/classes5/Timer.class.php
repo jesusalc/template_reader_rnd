@@ -9,7 +9,6 @@ namespace TemplateReaderTask;
 class Timer
 {
 
-    protected $clocked_time2;
     /**
      *
      * SPEED PING RESEARCH
@@ -20,6 +19,8 @@ class Timer
      *	// Removing Header since it will just work around the server
      *	$_POST ['OriginalRequestTimeFloat'] = $_SERVER ['REQUEST_TIME_FLOAT'];
      *
+     *
+     * @return float
      */
     function clock_in() {
         $mtime = microtime ();
@@ -43,12 +44,19 @@ class Timer
      *	$_SERVER ['speed'] = $serverTookTime2;
      *	$_SESSION ['speed'] = $serverTookTime2;
      *	$_GLOBALS ['speed'] = $serverTookTime2;
+     *
+     * @return float
      */
     function timer_diff($endtime, $starttime) {
         $totaltime = round ( ($endtime - $starttime), 5 );
         return $totaltime;
     }
 
+
+    /**
+     *
+     * @void
+     */
     function print_results($clocked_time2, $clocked_time){
         $speed = $this->timer_diff($clocked_time2, $clocked_time);
         echo " \n\n";

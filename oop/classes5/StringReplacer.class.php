@@ -60,6 +60,11 @@ class StringReplacer extends StringBetween
         return $return;
     }
 
+
+    /**
+     *
+     * @return int
+     */
     private function get_count($value){
         // count
         $count = 0;
@@ -69,6 +74,11 @@ class StringReplacer extends StringBetween
         return $count;
     }
 
+
+    /**
+     *
+     * @return string
+     */
     private function get_morphed_insert($return, $key, $value, $condition, $if, $else, $build) {
         $construct = "";
         $count = $this->get_count($value);
@@ -90,28 +100,35 @@ class StringReplacer extends StringBetween
         return $this->insert_between($return, "{{#each ".$key."}}", "{{/each}}", $construct);
     }
 
+
+    /**
+     *
+     * @return string
+     */
     private function get_block_morphed_insert($return, $key, $value) {
-        $block = $this->get_between($return, "{{#each ".$key."}}", "{{/each}}");
-        $build = $block;
-        $any_unless = strpos(".".$block, "{{#unless");
+        $template_block = $this->get_between($return, "{{#each ".$key."}}", "{{/each}}");
+
+        $build = $template_block;
+        $any_unless = strpos(".".$template_block, "{{#unless");
         $if = "";
         $else = "";
         $condition = "";
         if ($any_unless > 0) {
             // "{{Thing}} are {{Desc}}{{#unless @last}},{{else}}!{{/unless}}"
-            $unless = $this->get_between($block , "{{#unless @last}}", "{{/unless}}");
+            $unless = $this->get_between($template_block , "{{#unless @last}}", "{{/unless}}");
+
             $else = "";
             $if = "";
             $condition = "";
-            if (strpos($block, "@last") > 0 && strpos($block, "{{else}}") > 0) {
+            if (strpos($template_block, "@last") > 0 && strpos($template_block, "{{else}}") > 0) {
                 $condition = "unless last";
-                $if = $this->get_between($block , "{{#unless @last}}", "{{else}}");
-                $else = $this->get_between($block , "{{else}}", "{{/unless}}");
+                $if = $this->get_between($template_block , "{{#unless @last}}", "{{else}}");
+                $else = $this->get_between($template_block , "{{else}}", "{{/unless}}");
             } else {
-                $if = $this->get_between($block , "{{#unless @last}}", "{{/unless}}");
+                $if = $this->get_between($template_block , "{{#unless @last}}", "{{/unless}}");
             }
 
-            $build = $this->remove_between($block, "{{#unless @last}}", "{{/unless}}");
+            $build = $this->remove_between($template_block, "{{#unless @last}}", "{{/unless}}");
         }
         return $this->get_morphed_insert($return, $key, $value, $condition, $if, $else, $build);
     }
